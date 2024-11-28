@@ -111,17 +111,17 @@ export default function Admin({ role, contract, web3, currentAccount }) {
                   sx={{ width: "40%", margin: "auto" }}
                   onClick={handleEnd}
                 >
-                  {electionState === 0 && "Start Election"}
-                  {electionState === 1 && "End Election"}
+                  {electionState === 0 && "Bắt đầu bình chọn"}
+                  {electionState === 1 && "Kết thức bình chọn"}
                 </Button>
               </Grid>
             )}
 
             <Grid item xs={12}>
               <Typography align="center" variant="h6">
-                {electionState === 0 && "ADD VOTERS / CANDIDATES"}
-                {electionState === 1 && "SEE LIVE RESULTS"}
-                {electionState === 2 && "FINAL ELECTION RESULT"}
+                {electionState === 0 && "Thêm người vote"}
+                {electionState === 1 && "Xem trực tiếp kết quả"}
+                {electionState === 2 && "Kết thúc cuộc bình chọn"}
               </Typography>
               <Divider />
             </Grid>
@@ -194,14 +194,14 @@ export default function Admin({ role, contract, web3, currentAccount }) {
           >
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                {electionState === 0 && "Do you want to start the election?"}
-                {electionState === 1 && "Do you want to end the election?"}
+                {electionState === 0 && "Bạn muốn bắt đầu cuộc bình chọn?"}
+                {electionState === 1 && "Bạn muốn kết thức cuộc bình chọn?"}
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Disagree</Button>
+              <Button onClick={handleClose}>Không đồng ý</Button>
               <Button onClick={handleAgree} autoFocus>
-                Agree
+                Đồng ý
               </Button>
             </DialogActions>
           </Dialog>

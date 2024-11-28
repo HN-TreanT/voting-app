@@ -40,18 +40,21 @@ contract Election {
 
     event Voted(uint256 indexed _candidateId);
 
+    // bắt đầu cuộc bình chọn
     function startElection() public {
         require(msg.sender == owner);
         require(electionState == State.NotStarted);
         electionState = State.InProgress;
     }
 
+    // kết thúc cuộc bình chọn
     function endElection() public {
         require(msg.sender == owner);
         require(electionState == State.InProgress);
         electionState = State.Ended;
     }
 
+    // thêm ứng viên
     function addCandidate(string memory _name) public {
         require(owner == msg.sender, "Only owner can add candidates");
         require(
@@ -63,6 +66,7 @@ contract Election {
         candidatesCount++;
     }
 
+    // thêm người bình chọn
     function addVoter(address _voter) public {
         require(owner == msg.sender, "Only owner can add voter");
         require(!isVoter[_voter], "Voter already added");
@@ -74,6 +78,7 @@ contract Election {
         isVoter[_voter] = true;
     }
 
+    // lấy quyền của người dùng
     function getRole(address _current) public view returns (uint256) {
         if (owner == _current) {
             return 1;
@@ -84,6 +89,7 @@ contract Election {
         }
     }
 
+    // thực hiện vote
     function vote(uint256 _candidateId) public {
         require(
             electionState == State.InProgress,
@@ -102,6 +108,7 @@ contract Election {
         emit Voted(_candidateId);
     }
 
+    // xem chi tiết ứng viên
     function getCandidateDetails(uint256 _candidateId)
         public
         view
